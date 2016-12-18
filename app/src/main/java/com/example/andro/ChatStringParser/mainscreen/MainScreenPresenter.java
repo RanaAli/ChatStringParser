@@ -9,6 +9,17 @@ public class MainScreenPresenter {
 
     public MainScreenPresenter(MainScreenView mainScreenView) {
         this.mainScreenView = mainScreenView;
+        this.mainScreenView.setMainScreenViewInterface(mainScreenViewInterface);
 
     }
+
+    private MainScreenView.MainScreenViewInterface
+            mainScreenViewInterface = new MainScreenView.MainScreenViewInterface() {
+
+        @Override
+        public void inputString(String inputString) {
+            mainScreenView.setOutputText(inputString);
+        }
+
+    };
 }

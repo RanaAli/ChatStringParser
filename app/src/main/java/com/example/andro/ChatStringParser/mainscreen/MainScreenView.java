@@ -1,6 +1,7 @@
 package com.example.andro.ChatStringParser.mainscreen;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -14,21 +15,49 @@ import butterknife.ButterKnife;
  */
 
 public class MainScreenView {
+
     @BindView(R.id.mainScreenOutputTextView)
     protected TextView outputTextView;
 
     @BindView(R.id.mainScreenInputEditText)
     protected EditText inputEditText;
 
-    public MainScreenView(View view) {
+    @BindView(R.id.mainScreenInputButton)
+    protected Button inputButton;
+
+    private MainScreenViewInterface mainScreenViewInterface;
+
+    MainScreenView(View view) {
         ButterKnife.bind(this, view);
+
+        setupView();
     }
 
-    public void setOutputText(String outputText){
+    private void setupView() {
+        inputButton.setOnClickListener(inputButtonOnClickListener);
+    }
+
+    private View.OnClickListener inputButtonOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if(mainScreenViewInterface != null){
+                mainScreenViewInterface.inputString(getInputText());
+            }
+        }
+    };
+    void setOutputText(String outputText){
         outputTextView.setText(outputText);
     }
 
-    public String getInputText(){
+    String getInputText(){
         return inputEditText.getText().toString();
+    }
+
+    public void setMainScreenViewInterface(MainScreenViewInterface mainScreenViewInterface) {
+        this.mainScreenViewInterface = mainScreenViewInterface;
+    }
+
+    interface MainScreenViewInterface{
+        void inputString(String inputString);
     }
 }
