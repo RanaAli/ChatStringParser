@@ -10,6 +10,5 @@ public class MainScreenPresenter {
     public MainScreenPresenter(MainScreenView mainScreenView) {
         this.mainScreenView = mainScreenView;
 
-
     }
 }

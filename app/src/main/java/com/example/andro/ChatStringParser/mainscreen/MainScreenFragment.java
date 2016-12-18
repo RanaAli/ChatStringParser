@@ -26,6 +26,7 @@ public class MainScreenFragment extends Fragment {
         mainScreenView = new MainScreenView(view);
         mainScreenPresenter = new MainScreenPresenter(mainScreenView);
 
+        return view;
 
     }
 }

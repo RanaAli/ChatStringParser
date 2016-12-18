@@ -15,10 +15,10 @@ import butterknife.ButterKnife;
 
 public class MainScreenView {
     @BindView(R.id.mainScreenOutputTextView)
-    private TextView outputTextView;
+    protected TextView outputTextView;
 
     @BindView(R.id.mainScreenInputEditText)
-    private EditText inputEditText;
+    protected EditText inputEditText;
 
     public MainScreenView(View view) {
         ButterKnife.bind(this, view);
