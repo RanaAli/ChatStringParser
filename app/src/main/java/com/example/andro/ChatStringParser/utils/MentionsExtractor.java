@@ -10,8 +10,9 @@ import org.json.JSONObject;
  */
 
 public class MentionsExtractor {
+    public static final String JSON_ARRAY_NAME_MENTIONS = "mentions";
+
     private static final String MENTIONS_CHAR = "@";
-    private static final String JSON_ARRAY_NAME_MENTIONS = "mentions";
     private static final String STRING_SPACE = " ";
 
     public static JSONObject checkForMentions(String inputString) {
