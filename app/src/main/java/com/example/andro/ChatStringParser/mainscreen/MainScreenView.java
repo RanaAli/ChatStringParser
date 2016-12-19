@@ -49,6 +49,10 @@ public class MainScreenView {
         outputTextView.setText(outputText);
     }
 
+    void appendOutputText(String outputText){
+        outputTextView.append("\n" + outputText);
+    }
+
     String getInputText(){
         return inputEditText.getText().toString();
     }
