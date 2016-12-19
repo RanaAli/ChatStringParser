@@ -11,9 +11,10 @@ import org.json.JSONObject;
 public class MainScreenPresenter {
     public static final String EMOTICONS_START = "(";
     public static final String EMOTICONS_END = ")";
-    public static final String STRING_SPACE = " ";
+    public static final String SPLIT_REGEX_NON_WORD = "\\\\W";
     public static final String MENTIONS_CHAR = "@";
     public static final String JSONARRAY_NAME_MENTIONS = "mentions";
+    public static final String STRING_SPACE = " ";
     private MainScreenView mainScreenView;
 
     public MainScreenPresenter(MainScreenView mainScreenView) {
@@ -44,7 +45,7 @@ public class MainScreenPresenter {
 
 
         if (inputString.contains(EMOTICONS_START) && inputString.contains(EMOTICONS_END)) {
-            String[] splits = inputString.split(STRING_SPACE);
+            String[] splits = inputString.split(SPLIT_REGEX_NON_WORD);
 
             for (String splitObject : splits) {
                 if (splitObject.contains(EMOTICONS_START) && splitObject.contains(EMOTICONS_END)) {
@@ -53,7 +54,7 @@ public class MainScreenPresenter {
 
                     String emoticonString = splitObject.substring(startIndex, endingIndex);
 
-                    if(!emoticonString.isEmpty()) {
+                    if (!emoticonString.isEmpty()) {
                         emoticons.put(emoticonString);
                     }
                 }
@@ -73,19 +74,11 @@ public class MainScreenPresenter {
         JSONObject jsonObject = new JSONObject();
         JSONArray mentions = new JSONArray();
 
-
         if (inputString.contains(MENTIONS_CHAR)) {
-            String[] splits = inputString.split(STRING_SPACE);
+            String[] words = inputString.split(STRING_SPACE);
 
-            for (String splitObject : splits) {
-                if (splitObject.contains(MENTIONS_CHAR)) {
-
-                    String mentionString = splitObject.substring(MENTIONS_CHAR.length());
-
-                    if(!mentionString.isEmpty()) {
-                        mentions.put(mentionString);
-                    }
-                }
+            for (String splitObject : words) {
+                extractMentionFromWord(splitObject, mentions);
             }
         }
 
@@ -96,5 +89,23 @@ public class MainScreenPresenter {
         }
 
         return jsonObject;
+    }
+
+    private static void extractMentionFromWord(String word, JSONArray mentions) {
+
+        if (word.contains(MENTIONS_CHAR)) {
+            String[] wordSplits = word.split(MENTIONS_CHAR);
+
+            for (String wordSplit : wordSplits) {
+
+                if (wordSplit.contains(MENTIONS_CHAR)) {
+                    extractMentionFromWord(word, mentions);
+                } else if (!wordSplit.isEmpty()) {
+                    mentions.put(wordSplit);
+                }
+            }
+
+        }
+
     }
 }
