@@ -4,17 +4,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import static com.example.andro.ChatStringParser.utils.MentionsExtractor.checkForMentions;
+
 /**
  * Created by andro on 12/18/2016.
  */
 
 public class MainScreenPresenter {
-    public static final String EMOTICONS_START = "(";
-    public static final String EMOTICONS_END = ")";
-    public static final String SPLIT_REGEX_NON_WORD = "\\\\W";
-    public static final String MENTIONS_CHAR = "@";
-    public static final String JSONARRAY_NAME_MENTIONS = "mentions";
+    private static final String EMOTICONS_START = "(";
+    private static final String EMOTICONS_END = ")";
+    private static final String SPLIT_REGEX_NON_WORD = "\\\\W";
     public static final String STRING_SPACE = " ";
+
     private MainScreenView mainScreenView;
 
     public MainScreenPresenter(MainScreenView mainScreenView) {
@@ -70,42 +71,5 @@ public class MainScreenPresenter {
         return jsonObject;
     }
 
-    public static JSONObject checkForMentions(String inputString) {
-        JSONObject jsonObject = new JSONObject();
-        JSONArray mentions = new JSONArray();
 
-        if (inputString.contains(MENTIONS_CHAR)) {
-            String[] words = inputString.split(STRING_SPACE);
-
-            for (String splitObject : words) {
-                extractMentionFromWord(splitObject, mentions);
-            }
-        }
-
-        try {
-            jsonObject.put(JSONARRAY_NAME_MENTIONS, mentions);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        return jsonObject;
-    }
-
-    private static void extractMentionFromWord(String word, JSONArray mentions) {
-
-        if (word.contains(MENTIONS_CHAR)) {
-            String[] wordSplits = word.split(MENTIONS_CHAR);
-
-            for (String wordSplit : wordSplits) {
-
-                if (wordSplit.contains(MENTIONS_CHAR)) {
-                    extractMentionFromWord(word, mentions);
-                } else if (!wordSplit.isEmpty()) {
-                    mentions.put(wordSplit);
-                }
-            }
-
-        }
-
-    }
 }
