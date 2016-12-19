@@ -14,10 +14,13 @@ import org.junit.Test;
 
 public class MentionTest {
 
-    public static final String TEST_MENTION_NORMAL = "good morning! this is @ali";
-    public static final String TEST_MENTION_MORE_THEN_ONE = "good morning! this is @ali @rana";
-    public static final String TEST_MENTION_EMTY = "good morning! this is @ali @";
-    public static final String TEST_MENTION_NO_MENTION = "good morning! this is";
+    private static final String TEST_MENTION_NORMAL = "good morning! this is @ali";
+    private static final String TEST_MENTION_MORE_THEN_ONE = "good morning! this is @ali @rana";
+    private static final String TEST_MENTION_EMPTY = "good morning! this is @ali @";
+    private static final String TEST_MENTION_NO_MENTION = "good morning! this is";
+    private static final String TEST_MENTION_DOUBLE_MENTION_SYMBOL = "good morning! this is @@ali";
+    private static final String TEST_MENTION_ENDING_NON_WORD_CHAR = "good morning! this is @ali@";
+    private static final String TEST_MENTION_TWO_CONCATENATED_MENTIONS = "good morning! this is @rana@ali@";
 
     @Test
     public void normalMention() throws Exception {
@@ -51,7 +54,7 @@ public class MentionTest {
     @Test
     public void emptyMention() throws Exception {
         JSONObject jsonObject = MainScreenPresenter
-                .checkForMentions(TEST_MENTION_EMTY);
+                .checkForMentions(TEST_MENTION_EMPTY);
 
         JSONArray mentions = jsonObject.getJSONArray(MainScreenPresenter.JSONARRAY_NAME_MENTIONS);
 
@@ -71,5 +74,47 @@ public class MentionTest {
 
         Assert.assertEquals(0, mentions.length());
 
+    }
+
+    @Test
+    public void doubleSymbolMention() throws Exception {
+        JSONObject jsonObject = MainScreenPresenter
+                .checkForMentions(TEST_MENTION_DOUBLE_MENTION_SYMBOL);
+
+        JSONArray mentions = jsonObject.getJSONArray(MainScreenPresenter.JSONARRAY_NAME_MENTIONS);
+
+        Assert.assertEquals(1, mentions.length());
+
+        String mentionString = mentions.getString(0);
+        Assert.assertEquals("ali", mentionString);
+    }
+
+    @Test
+    public void nonWordCharEndingMention() throws Exception {
+        JSONObject jsonObject = MainScreenPresenter
+                .checkForMentions(TEST_MENTION_ENDING_NON_WORD_CHAR);
+
+        JSONArray mentions = jsonObject.getJSONArray(MainScreenPresenter.JSONARRAY_NAME_MENTIONS);
+
+        Assert.assertEquals(1, mentions.length());
+
+        String mentionString = mentions.getString(0);
+        Assert.assertEquals("ali", mentionString);
+    }
+
+    @Test
+    public void concatedMention() throws Exception {
+        JSONObject jsonObject = MainScreenPresenter
+                .checkForMentions(TEST_MENTION_TWO_CONCATENATED_MENTIONS);
+
+        JSONArray mentions = jsonObject.getJSONArray(MainScreenPresenter.JSONARRAY_NAME_MENTIONS);
+
+        Assert.assertEquals(2, mentions.length());
+
+        String mentionString = mentions.getString(0);
+        Assert.assertEquals("rana", mentionString);
+
+        mentionString = mentions.getString(1);
+        Assert.assertEquals("ali", mentionString);
     }
 }
