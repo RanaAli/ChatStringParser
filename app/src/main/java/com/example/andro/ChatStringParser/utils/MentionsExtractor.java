@@ -10,7 +10,8 @@ import org.json.JSONObject;
  */
 
 public class MentionsExtractor {
-    public static final String JSON_ARRAY_NAME_MENTIONS = "mentions";
+    public static final String JSON_ARRAY_NAME = "mentions";
+    public static final String NON_WORD_REGEX = "[^\\w']+";
 
     private static final String MENTIONS_CHAR = "@";
     private static final String STRING_SPACE = " ";
@@ -28,7 +29,7 @@ public class MentionsExtractor {
         }
 
         try {
-            jsonObject.put(JSON_ARRAY_NAME_MENTIONS, mentions);
+            jsonObject.put(JSON_ARRAY_NAME, mentions);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -44,9 +45,12 @@ public class MentionsExtractor {
             for (String wordSplit : wordSplits) {
 
                 if (wordSplit.contains(MENTIONS_CHAR)) {
-                    extractMentionFromWord(word, mentions);
-                } else if (!wordSplit.isEmpty()) {
-                    mentions.put(wordSplit);
+                    extractMentionFromWord(wordSplit, mentions);
+                } else {
+                    String[] finalArray = wordSplit.split(NON_WORD_REGEX);
+                    if (finalArray.length > 0 && !finalArray[0].isEmpty()) {
+                        mentions.put(finalArray[0]);
+                    }
                 }
             }
 

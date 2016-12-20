@@ -25,12 +25,13 @@ public class MentionTest {
     private static final String TEST_MENTION_TWO_CONCATENATED_MENTIONS = "good morning! this is @rana@ali@";
     private static final String TEST_MENTION_UNDERSCORE = "good morning! this is @rana_ali";
     private static final String TEST_MENTION_UNDERSCORE_ENDING_SYMBOL = "good morning! this is @rana_ali@";
+    private static final String TEST_STRING = "@ali_! @AlU_!";
 
     @Test
     public void normalMention() throws Exception {
         JSONObject jsonObject = checkForMentions(TEST_MENTION_NORMAL);
 
-        JSONArray mentions = jsonObject.getJSONArray(MentionsExtractor.JSON_ARRAY_NAME_MENTIONS);
+        JSONArray mentions = jsonObject.getJSONArray(MentionsExtractor.JSON_ARRAY_NAME);
 
         Assert.assertEquals(mentions.length(), 1);
 
@@ -42,7 +43,7 @@ public class MentionTest {
     public void moreThenOneMention() throws Exception {
         JSONObject jsonObject = checkForMentions(TEST_MENTION_MORE_THEN_ONE);
 
-        JSONArray mentions = jsonObject.getJSONArray(MentionsExtractor.JSON_ARRAY_NAME_MENTIONS);
+        JSONArray mentions = jsonObject.getJSONArray(MentionsExtractor.JSON_ARRAY_NAME);
 
         Assert.assertEquals(2, mentions.length());
 
@@ -57,7 +58,7 @@ public class MentionTest {
     public void emptyMention() throws Exception {
         JSONObject jsonObject = checkForMentions(TEST_MENTION_EMPTY);
 
-        JSONArray mentions = jsonObject.getJSONArray(MentionsExtractor.JSON_ARRAY_NAME_MENTIONS);
+        JSONArray mentions = jsonObject.getJSONArray(MentionsExtractor.JSON_ARRAY_NAME);
 
         Assert.assertEquals(1, mentions.length());
 
@@ -70,7 +71,7 @@ public class MentionTest {
     public void noMention() throws Exception {
         JSONObject jsonObject = checkForMentions(TEST_MENTION_NO_MENTION);
 
-        JSONArray mentions = jsonObject.getJSONArray(MentionsExtractor.JSON_ARRAY_NAME_MENTIONS);
+        JSONArray mentions = jsonObject.getJSONArray(MentionsExtractor.JSON_ARRAY_NAME);
 
         Assert.assertEquals(0, mentions.length());
 
@@ -80,7 +81,7 @@ public class MentionTest {
     public void doubleSymbolMention() throws Exception {
         JSONObject jsonObject = checkForMentions(TEST_MENTION_DOUBLE_MENTION_SYMBOL);
 
-        JSONArray mentions = jsonObject.getJSONArray(MentionsExtractor.JSON_ARRAY_NAME_MENTIONS);
+        JSONArray mentions = jsonObject.getJSONArray(MentionsExtractor.JSON_ARRAY_NAME);
 
         Assert.assertEquals(1, mentions.length());
 
@@ -92,7 +93,7 @@ public class MentionTest {
     public void nonWordCharEndingMention() throws Exception {
         JSONObject jsonObject = checkForMentions(TEST_MENTION_ENDING_NON_WORD_CHAR);
 
-        JSONArray mentions = jsonObject.getJSONArray(MentionsExtractor.JSON_ARRAY_NAME_MENTIONS);
+        JSONArray mentions = jsonObject.getJSONArray(MentionsExtractor.JSON_ARRAY_NAME);
 
         Assert.assertEquals(1, mentions.length());
 
@@ -104,7 +105,7 @@ public class MentionTest {
     public void concatenatedMention() throws Exception {
         JSONObject jsonObject = checkForMentions(TEST_MENTION_TWO_CONCATENATED_MENTIONS);
 
-        JSONArray mentions = jsonObject.getJSONArray(MentionsExtractor.JSON_ARRAY_NAME_MENTIONS);
+        JSONArray mentions = jsonObject.getJSONArray(MentionsExtractor.JSON_ARRAY_NAME);
 
         Assert.assertEquals(2, mentions.length());
 
@@ -120,7 +121,7 @@ public class MentionTest {
     public void underscoreMention() throws Exception {
         JSONObject jsonObject = checkForMentions(TEST_MENTION_UNDERSCORE);
 
-        JSONArray mentions = jsonObject.getJSONArray(MentionsExtractor.JSON_ARRAY_NAME_MENTIONS);
+        JSONArray mentions = jsonObject.getJSONArray(MentionsExtractor.JSON_ARRAY_NAME);
 
         Assert.assertEquals(1, mentions.length());
 
@@ -133,7 +134,7 @@ public class MentionTest {
     public void underscoreEndingSymbolMention() throws Exception {
         JSONObject jsonObject = checkForMentions(TEST_MENTION_UNDERSCORE_ENDING_SYMBOL);
 
-        JSONArray mentions = jsonObject.getJSONArray(MentionsExtractor.JSON_ARRAY_NAME_MENTIONS);
+        JSONArray mentions = jsonObject.getJSONArray(MentionsExtractor.JSON_ARRAY_NAME);
 
         Assert.assertEquals(1, mentions.length());
 
@@ -141,4 +142,20 @@ public class MentionTest {
         Assert.assertEquals("rana_ali", mentionString);
 
     }
+
+    @Test
+    public void otherTestMention() throws Exception {
+        JSONObject jsonObject = checkForMentions(TEST_STRING);
+
+        JSONArray mentions = jsonObject.getJSONArray(MentionsExtractor.JSON_ARRAY_NAME);
+
+        Assert.assertEquals(2, mentions.length());
+
+        String mentionString = mentions.getString(0);
+        Assert.assertEquals("ali_", mentionString);
+
+        mentionString = mentions.getString(1);
+        Assert.assertEquals("AlU_", mentionString);
+    }
+
 }

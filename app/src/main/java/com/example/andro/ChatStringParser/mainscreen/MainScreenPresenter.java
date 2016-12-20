@@ -1,9 +1,6 @@
 package com.example.andro.ChatStringParser.mainscreen;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
+import static com.example.andro.ChatStringParser.utils.EmoticonsExtractor.checkForEmoticons;
 import static com.example.andro.ChatStringParser.utils.MentionsExtractor.checkForMentions;
 
 /**
@@ -11,10 +8,8 @@ import static com.example.andro.ChatStringParser.utils.MentionsExtractor.checkFo
  */
 
 public class MainScreenPresenter {
-    private static final String EMOTICONS_START = "(";
-    private static final String EMOTICONS_END = ")";
-    private static final String SPLIT_REGEX_NON_WORD = "\\\\W";
-    public static final String STRING_SPACE = " ";
+
+
 
     private MainScreenView mainScreenView;
 
@@ -40,36 +35,7 @@ public class MainScreenPresenter {
 
     };
 
-    JSONObject checkForEmoticons(String inputString) {
-        JSONObject jsonObject = new JSONObject();
-        JSONArray emoticons = new JSONArray();
 
-
-        if (inputString.contains(EMOTICONS_START) && inputString.contains(EMOTICONS_END)) {
-            String[] splits = inputString.split(SPLIT_REGEX_NON_WORD);
-
-            for (String splitObject : splits) {
-                if (splitObject.contains(EMOTICONS_START) && splitObject.contains(EMOTICONS_END)) {
-                    int startIndex = splitObject.lastIndexOf(EMOTICONS_START) + EMOTICONS_START.length();
-                    int endingIndex = splitObject.indexOf(EMOTICONS_END, startIndex);
-
-                    String emoticonString = splitObject.substring(startIndex, endingIndex);
-
-                    if (!emoticonString.isEmpty()) {
-                        emoticons.put(emoticonString);
-                    }
-                }
-            }
-        }
-
-        try {
-            jsonObject.put("emoticons", emoticons);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        return jsonObject;
-    }
 
 
 }
