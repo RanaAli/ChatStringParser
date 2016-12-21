@@ -13,12 +13,16 @@ import java.util.regex.Pattern;
 
 public class LinkExtractor {
 
-    public static final String REGEX_URL = "(?:^|[\\W])((ht|f)tp(s?):\\/\\/|www\\.)(([\\w\\-]+\\.)" +
+    private static final String REGEX_URL = "(?:^|[\\W])((ht|f)tp(s?):\\/\\/|www\\.)(([\\w\\-]+\\.)" +
             "{1,}?([\\w\\-.~]+\\/?)*[\\p{Alnum}.,%_=?&#\\-+()\\[\\]\\*$~@!:/{};']*)";
 
     public static final String JSON_ARRAY_NAME = "links";
     public static final String JSON_OBJECT_URL = "url";
-    public static final String JSON_OBJECT_TITLE = "title";
+    private static final String JSON_OBJECT_TITLE = "title";
+    private static final String WWW = "www";
+    private static final String HTTP = "http://";
+    private static final String HTTPS = "https://";
+    private static final String FTP = "ftp://";
 
     public static JSONObject checkForLinks(String inputString) {
         JSONObject jsonObject = new JSONObject();
@@ -36,17 +40,27 @@ public class LinkExtractor {
             int end = matcher.end();
 
             output = inputString.substring(start, end);
+
+            if (output.startsWith(WWW)) {
+                String urlProtocol = inputString.substring(0, start);
+
+                if (urlProtocol.endsWith(HTTP)) {
+                    output = HTTP + output;
+                } else if (urlProtocol.endsWith(HTTPS)) {
+                    output = HTTPS + output;
+                } else if (urlProtocol.endsWith(FTP)) {
+                    output = FTP + output;
+                }
+            }
         }
 
         try {
 
-        if (output != null) {
             JSONObject linkObject = new JSONObject();
             linkObject.put(JSON_OBJECT_URL, output);
             linkObject.put(JSON_OBJECT_TITLE, "");
 
             links.put(linkObject);
-        }
 
             jsonObject.put(JSON_ARRAY_NAME, links);
         } catch (JSONException e) {

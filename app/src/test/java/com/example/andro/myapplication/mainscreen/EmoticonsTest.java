@@ -15,6 +15,9 @@ import static com.example.andro.ChatStringParser.utils.EmoticonsExtractor.checkF
  */
 
 public class EmoticonsTest {
+    private static final String TEST_EMOTICON_ONE_CHAR = "take me as your input (A)";
+    private static final String TEST_EMOTICON_ONE_NUM = "take me as your input (1)";
+    private static final String TEST_EMOTICON_MISSING_BRACKET = "take me as your input (happy";
     private static final String TEST_EMOTICON_NORMAL = "good morning! this is (happy)";
     private static final String TEST_EMOTICON_MULTIPLE_BRACKET_1 = "good morning! this is ((happy)";
     private static final String TEST_EMOTICON_MULTIPLE_BRACKET_2 = "good morning! this is ((happy))";
@@ -24,10 +27,10 @@ public class EmoticonsTest {
     private static final String TEST_EMOTICON_TWO_CONCATENATED = "good morning! this is (happy)(android)";
     private static final String TEST_EMOTICON_THREE_CONCATENATED = "good morning! this is (happy)(android)(bamboo)";
     private static final String TEST_EMOTICON_EXTRA_CONCATENATED = "good morning! this is (happy)android";
-    private static final String TEST_EMOTICON_TOO_LONG= "good morning! this is (happyhappyhappyhappy)";
-    private static final String TEST_EMOTICON_MAX_LENGTH= "good morning! this is (happyhappyhappy)";
-    private static final String TEST_EMOTICON_ALPHANUMERIC= "good morning! this is (happy123)";
-    private static final String TEST_EMOTICON_NON_ALPHANUMERIC= "good morning! this is (happy1@!3)";
+    private static final String TEST_EMOTICON_TOO_LONG = "good morning! this is (happyhappyhappyhappy)";
+    private static final String TEST_EMOTICON_MAX_LENGTH = "good morning! this is (happyhappyhappy)";
+    private static final String TEST_EMOTICON_ALPHANUMERIC = "good morning! this is (happy123)";
+    private static final String TEST_EMOTICON_NON_ALPHANUMERIC = "good morning! this is (happy1@!3)";
 
     @Test
     public void normalEmoticon() throws Exception {
