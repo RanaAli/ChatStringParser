@@ -11,13 +11,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.ranaali.andro.ChatStringParser.Constants.Constants.NEW_LINE;
+
 /**
  * Created by andro on 12/18/2016.
  */
 
 public class MainScreenView {
-
-    private static final String NEW_LINE = "\n";
 
     @BindView(R.id.mainScreenOutputTextView)
     protected TextView outputTextView;

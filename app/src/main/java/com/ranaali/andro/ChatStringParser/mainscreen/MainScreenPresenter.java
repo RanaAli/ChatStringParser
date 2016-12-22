@@ -6,13 +6,14 @@ import com.ranaali.andro.ChatStringParser.utils.ChatStringJSONCreator;
 
 import org.json.JSONObject;
 
+import static com.ranaali.andro.ChatStringParser.Constants.Constants.NEW_LINE;
+
 /**
  * Created by andro on 12/18/2016.
  */
 
 public class MainScreenPresenter {
 
-    private static final String NEW_LINE = "\n";
     private MainScreenView mainScreenView;
 
     MainScreenPresenter(MainScreenView mainScreenView) {
