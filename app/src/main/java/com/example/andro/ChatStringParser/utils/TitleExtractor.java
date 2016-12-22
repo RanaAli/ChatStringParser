@@ -12,6 +12,11 @@ import java.util.regex.Pattern;
 
 /**
  * Created by andro on 12/18/2016.
+ * <p>
+ * The code was taken from the following link.
+ * http://www.gotoquiz.com/web-coding/programming/
+ * java-programming/how-to-extract-titles-from-web-pages-in-java/
+ *
  */
 
 public class TitleExtractor {
@@ -92,7 +97,8 @@ public class TitleExtractor {
     }
 
     private static Charset getCharset(ContentType contentType) {
-        if (contentType != null && contentType.charsetName != null && Charset.isSupported(contentType.charsetName))
+        if (contentType != null
+                && contentType.charsetName != null && Charset.isSupported(contentType.charsetName))
             return Charset.forName(contentType.charsetName);
         else
             return null;
@@ -102,14 +108,16 @@ public class TitleExtractor {
      * Class holds the content type and charset (if present)
      */
     private static final class ContentType {
-        private static final Pattern CHARSET_HEADER = Pattern.compile("charset=([-_a-zA-Z0-9]+)", Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
+        private static final Pattern CHARSET_HEADER = Pattern.compile("charset=([-_a-zA-Z0-9]+)",
+                Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
 
         private String contentType;
         private String charsetName;
 
         private ContentType(String headerValue) {
             if (headerValue == null)
-                throw new IllegalArgumentException("ContentType must be constructed with a not-null headerValue");
+                throw new IllegalArgumentException("ContentType must be " +
+                        "constructed with a not-null headerValue");
             int n = headerValue.indexOf(";");
             if (n != -1) {
                 contentType = headerValue.substring(0, n);

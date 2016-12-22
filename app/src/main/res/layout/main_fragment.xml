@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/activity_vertical_margin">
+    android:padding="@dimen/activity_vertical">
 
     <TextView
         android:id="@+id/mainScreenTitleTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Testing" />
+        android:text="@string/testing" />
 
     <RelativeLayout
         android:id="@+id/mainScreenInputRelativeLayout"
@@ -23,15 +22,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="Enter" />
+            android:text="@string/enter" />
 
         <EditText
             android:id="@+id/mainScreenInputEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal"
             android:layout_toLeftOf="@id/mainScreenInputButton"
-            android:hint="Enter String here" />
+            android:hint="@string/chatEditTextHint" />
 
     </RelativeLayout>
 
@@ -41,7 +40,9 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/mainScreenInputRelativeLayout"
         android:layout_below="@id/mainScreenTitleTextView"
-        android:background="@android:color/background_dark"
-        android:padding="@dimen/activity_vertical_margin"
-        android:textColor="@android:color/background_light" />
+        android:layout_marginBottom="@dimen/activity_vertical"
+        android:layout_marginTop="@dimen/activity_vertical"
+        android:background="@android:color/darker_gray"
+        android:padding="@dimen/activity_vertical"
+        android:textColor="@android:color/black" />
 </RelativeLayout>

@@ -12,9 +12,10 @@ import org.json.JSONObject;
 
 public class MainScreenPresenter {
 
+    private static final String NEW_LINE = "\n";
     private MainScreenView mainScreenView;
 
-    public MainScreenPresenter(MainScreenView mainScreenView) {
+    MainScreenPresenter(MainScreenView mainScreenView) {
         this.mainScreenView = mainScreenView;
         this.mainScreenView.setMainScreenViewInterface(mainScreenViewInterface);
 
@@ -27,15 +28,12 @@ public class MainScreenPresenter {
         public void inputString(String inputString) {
 
             try {
-
                 JSONObject jsonObject = new CreateJson().execute(inputString).get();
 
-                String displayText = inputString + "\n" + "\n" + jsonObject.toString();
+                String displayText = inputString + NEW_LINE + NEW_LINE + jsonObject.toString();
                 mainScreenView.setOutputText(displayText);
-
             } catch (Exception e) {
                 e.printStackTrace();
-
             }
         }
 

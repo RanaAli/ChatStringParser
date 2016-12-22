@@ -16,6 +16,8 @@ import butterknife.ButterKnife;
 
 public class MainScreenView {
 
+    private static final String NEW_LINE = "\n";
+
     @BindView(R.id.mainScreenOutputTextView)
     protected TextView outputTextView;
 
@@ -50,7 +52,7 @@ public class MainScreenView {
     }
 
     void appendOutputText(String outputText){
-        outputTextView.append("\n" + outputText);
+        outputTextView.append(NEW_LINE + outputText);
     }
 
     String getInputText(){

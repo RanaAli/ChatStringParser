@@ -14,7 +14,6 @@ import com.example.andro.myapplication.R;
  */
 
 public class MainScreenFragment extends Fragment {
-    private MainScreenPresenter mainScreenPresenter;
     private MainScreenView mainScreenView;
 
     @Nullable
@@ -24,7 +23,7 @@ public class MainScreenFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.main_fragment, container, false);
         mainScreenView = new MainScreenView(view);
-        mainScreenPresenter = new MainScreenPresenter(mainScreenView);
+        MainScreenPresenter mainScreenPresenter = new MainScreenPresenter(mainScreenView);
 
         return view;
 

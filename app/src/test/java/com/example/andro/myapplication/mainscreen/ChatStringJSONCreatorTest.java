@@ -19,9 +19,9 @@ public class ChatStringJSONCreatorTest {
 
     @Test
     public void normalTest() throws Exception {
-        JSONObject emoticons = ChatStringJSONCreator.ChatStringToJSON(TEST_MAIN_SCREEN_PRE_NORMAL);
+        JSONObject jsonObject = ChatStringJSONCreator.ChatStringToJSON(TEST_MAIN_SCREEN_PRE_NORMAL);
 
-        Assert.assertEquals(1, emoticons.length());
+        Assert.assertEquals(3, jsonObject.length());
 
     }
 

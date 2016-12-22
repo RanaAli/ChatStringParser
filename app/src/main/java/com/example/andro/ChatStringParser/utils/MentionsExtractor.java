@@ -9,8 +9,7 @@ import org.json.JSONArray;
 
 public class MentionsExtractor {
 
-    public static final String NON_WORD_REGEX = "[^\\w']+";
-
+    private static final String NON_WORD_REGEX = "[^\\w']+";
     private static final String MENTIONS_CHAR = "@";
     private static final String STRING_SPACE = " ";
 

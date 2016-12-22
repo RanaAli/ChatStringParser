@@ -45,11 +45,11 @@ public class LinkExtractor {
                 output = addUrlProtocolIfNeeded(inputString, output, start);
 
                 String urlTitle;
+
                 try {
                     urlTitle = TitleExtractor.getPageTitle(output);
                 } catch (Exception e) {
                     e.printStackTrace();
-
                     urlTitle = "";
                 }
 
