@@ -1,8 +1,6 @@
 package com.example.andro.ChatStringParser.utils;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 
 /**
@@ -10,14 +8,14 @@ import org.json.JSONObject;
  */
 
 public class MentionsExtractor {
-    public static final String JSON_ARRAY_NAME = "mentions";
+
     public static final String NON_WORD_REGEX = "[^\\w']+";
 
     private static final String MENTIONS_CHAR = "@";
     private static final String STRING_SPACE = " ";
 
-    public static JSONObject checkForMentions(String inputString) {
-        JSONObject jsonObject = new JSONObject();
+    public static JSONArray checkForMentions(String inputString) {
+
         JSONArray mentions = new JSONArray();
 
         if (inputString.contains(MENTIONS_CHAR)) {
@@ -28,13 +26,7 @@ public class MentionsExtractor {
             }
         }
 
-        try {
-            jsonObject.put(JSON_ARRAY_NAME, mentions);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        return jsonObject;
+        return mentions;
     }
 
     private static void extractMentionFromWord(String word, JSONArray mentions) {

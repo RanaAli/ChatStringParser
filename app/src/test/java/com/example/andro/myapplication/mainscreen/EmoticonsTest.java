@@ -1,11 +1,8 @@
 package com.example.andro.myapplication.mainscreen;
 
-import com.example.andro.ChatStringParser.utils.EmoticonsExtractor;
-
 import junit.framework.Assert;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 import org.junit.Test;
 
 import static com.example.andro.ChatStringParser.utils.EmoticonsExtractor.checkForEmoticons;
@@ -34,9 +31,7 @@ public class EmoticonsTest {
 
     @Test
     public void normalEmoticon() throws Exception {
-        JSONObject jsonObject = checkForEmoticons(TEST_EMOTICON_NORMAL);
-
-        JSONArray emoticons = jsonObject.getJSONArray(EmoticonsExtractor.JSON_ARRAY_NAME);
+        JSONArray emoticons = checkForEmoticons(TEST_EMOTICON_NORMAL);
 
         Assert.assertEquals(1, emoticons.length());
 
@@ -46,18 +41,14 @@ public class EmoticonsTest {
 
     @Test
     public void emptyEmoticon() throws Exception {
-        JSONObject jsonObject = checkForEmoticons(TEST_EMOTICON_EMPTY);
-
-        JSONArray emoticons = jsonObject.getJSONArray(EmoticonsExtractor.JSON_ARRAY_NAME);
+        JSONArray emoticons = checkForEmoticons(TEST_EMOTICON_EMPTY);
 
         Assert.assertEquals(0, emoticons.length());
     }
 
     @Test
     public void twoEmoticon() throws Exception {
-        JSONObject jsonObject = checkForEmoticons(TEST_EMOTICON_TWO);
-
-        JSONArray emoticons = jsonObject.getJSONArray(EmoticonsExtractor.JSON_ARRAY_NAME);
+        JSONArray emoticons = checkForEmoticons(TEST_EMOTICON_TWO);
 
         Assert.assertEquals(2, emoticons.length());
 
@@ -70,9 +61,7 @@ public class EmoticonsTest {
 
     @Test
     public void concatenatedEmoticon() throws Exception {
-        JSONObject jsonObject = checkForEmoticons(TEST_EMOTICON_TWO_CONCATENATED);
-
-        JSONArray emoticons = jsonObject.getJSONArray(EmoticonsExtractor.JSON_ARRAY_NAME);
+        JSONArray emoticons = checkForEmoticons(TEST_EMOTICON_TWO_CONCATENATED);
 
         Assert.assertEquals(2, emoticons.length());
 
@@ -85,9 +74,7 @@ public class EmoticonsTest {
 
     @Test
     public void threeConcatenatedEmoticon() throws Exception {
-        JSONObject jsonObject = checkForEmoticons(TEST_EMOTICON_THREE_CONCATENATED);
-
-        JSONArray emoticons = jsonObject.getJSONArray(EmoticonsExtractor.JSON_ARRAY_NAME);
+        JSONArray emoticons = checkForEmoticons(TEST_EMOTICON_THREE_CONCATENATED);
 
         Assert.assertEquals(3, emoticons.length());
 
@@ -103,9 +90,7 @@ public class EmoticonsTest {
 
     @Test
     public void extraConcatenatedEmoticon() throws Exception {
-        JSONObject jsonObject = checkForEmoticons(TEST_EMOTICON_EXTRA_CONCATENATED);
-
-        JSONArray emoticons = jsonObject.getJSONArray(EmoticonsExtractor.JSON_ARRAY_NAME);
+        JSONArray emoticons = checkForEmoticons(TEST_EMOTICON_EXTRA_CONCATENATED);
 
         Assert.assertEquals(1, emoticons.length());
 
@@ -115,18 +100,14 @@ public class EmoticonsTest {
 
     @Test
     public void tooLongEmoticon() throws Exception {
-        JSONObject jsonObject = checkForEmoticons(TEST_EMOTICON_TOO_LONG);
-
-        JSONArray emoticons = jsonObject.getJSONArray(EmoticonsExtractor.JSON_ARRAY_NAME);
+        JSONArray emoticons = checkForEmoticons(TEST_EMOTICON_TOO_LONG);
 
         Assert.assertEquals(0, emoticons.length());
     }
 
     @Test
     public void maxLengthEmoticon() throws Exception {
-        JSONObject jsonObject = checkForEmoticons(TEST_EMOTICON_MAX_LENGTH);
-
-        JSONArray emoticons = jsonObject.getJSONArray(EmoticonsExtractor.JSON_ARRAY_NAME);
+        JSONArray emoticons = checkForEmoticons(TEST_EMOTICON_MAX_LENGTH);
 
         Assert.assertEquals(1, emoticons.length());
 
@@ -136,9 +117,7 @@ public class EmoticonsTest {
 
     @Test
     public void alphaNumericEmoticon() throws Exception {
-        JSONObject jsonObject = checkForEmoticons(TEST_EMOTICON_ALPHANUMERIC);
-
-        JSONArray emoticons = jsonObject.getJSONArray(EmoticonsExtractor.JSON_ARRAY_NAME);
+        JSONArray emoticons = checkForEmoticons(TEST_EMOTICON_ALPHANUMERIC);
 
         Assert.assertEquals(1, emoticons.length());
 
@@ -148,18 +127,14 @@ public class EmoticonsTest {
 
     @Test
     public void nonAlphaNumericEmoticon() throws Exception {
-        JSONObject jsonObject = checkForEmoticons(TEST_EMOTICON_NON_ALPHANUMERIC);
-
-        JSONArray emoticons = jsonObject.getJSONArray(EmoticonsExtractor.JSON_ARRAY_NAME);
+        JSONArray emoticons = checkForEmoticons(TEST_EMOTICON_NON_ALPHANUMERIC);
 
         Assert.assertEquals(0, emoticons.length());
     }
 
     @Test
     public void multipleBracketsOneEmoticon() throws Exception {
-        JSONObject jsonObject = checkForEmoticons(TEST_EMOTICON_MULTIPLE_BRACKET_1);
-
-        JSONArray emoticons = jsonObject.getJSONArray(EmoticonsExtractor.JSON_ARRAY_NAME);
+        JSONArray emoticons = checkForEmoticons(TEST_EMOTICON_MULTIPLE_BRACKET_1);
 
         Assert.assertEquals(1, emoticons.length());
 
@@ -169,9 +144,7 @@ public class EmoticonsTest {
 
     @Test
     public void multipleBracketsTwoEmoticon() throws Exception {
-        JSONObject jsonObject = checkForEmoticons(TEST_EMOTICON_MULTIPLE_BRACKET_2);
-
-        JSONArray emoticons = jsonObject.getJSONArray(EmoticonsExtractor.JSON_ARRAY_NAME);
+        JSONArray emoticons =  checkForEmoticons(TEST_EMOTICON_MULTIPLE_BRACKET_2);
 
         Assert.assertEquals(1, emoticons.length());
 
@@ -181,9 +154,7 @@ public class EmoticonsTest {
 
     @Test
     public void multipleBracketsThreeEmoticon() throws Exception {
-        JSONObject jsonObject = checkForEmoticons(TEST_EMOTICON_MULTIPLE_BRACKET_3);
-
-        JSONArray emoticons = jsonObject.getJSONArray(EmoticonsExtractor.JSON_ARRAY_NAME);
+        JSONArray emoticons = checkForEmoticons(TEST_EMOTICON_MULTIPLE_BRACKET_3);
 
         Assert.assertEquals(1, emoticons.length());
 

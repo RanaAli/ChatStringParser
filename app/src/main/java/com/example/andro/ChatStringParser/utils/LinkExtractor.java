@@ -1,9 +1,12 @@
 package com.example.andro.ChatStringParser.utils;
 
+import android.support.annotation.NonNull;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,7 +19,6 @@ public class LinkExtractor {
     private static final String REGEX_URL = "(?:^|[\\W])((ht|f)tp(s?):\\/\\/|www\\.)(([\\w\\-]+\\.)" +
             "{1,}?([\\w\\-.~]+\\/?)*[\\p{Alnum}.,%_=?&#\\-+()\\[\\]\\*$~@!:/{};']*)";
 
-    public static final String JSON_ARRAY_NAME = "links";
     public static final String JSON_OBJECT_URL = "url";
     private static final String JSON_OBJECT_TITLE = "title";
     private static final String WWW = "www";
@@ -24,8 +26,7 @@ public class LinkExtractor {
     private static final String HTTPS = "https://";
     private static final String FTP = "ftp://";
 
-    public static JSONObject checkForLinks(String inputString) {
-        JSONObject jsonObject = new JSONObject();
+    public static JSONArray checkForLinks(String inputString) {
         JSONArray links = new JSONArray();
 
         Pattern urlPattern = Pattern.compile(REGEX_URL,
@@ -33,40 +34,54 @@ public class LinkExtractor {
 
         Matcher matcher = urlPattern.matcher(inputString);
 
-        String output = null;
-
-        while (matcher.find()) {
-            int start = matcher.start(1);
-            int end = matcher.end();
-
-            output = inputString.substring(start, end);
-
-            if (output.startsWith(WWW)) {
-                String urlProtocol = inputString.substring(0, start);
-
-                if (urlProtocol.endsWith(HTTP)) {
-                    output = HTTP + output;
-                } else if (urlProtocol.endsWith(HTTPS)) {
-                    output = HTTPS + output;
-                } else if (urlProtocol.endsWith(FTP)) {
-                    output = FTP + output;
-                }
-            }
-        }
-
         try {
 
-            JSONObject linkObject = new JSONObject();
-            linkObject.put(JSON_OBJECT_URL, output);
-            linkObject.put(JSON_OBJECT_TITLE, "");
+            while (matcher.find()) {
+                String output;
+                int start = matcher.start(1);
+                int end = matcher.end();
 
-            links.put(linkObject);
+                output = inputString.substring(start, end);
 
-            jsonObject.put(JSON_ARRAY_NAME, links);
+                output = addUrlProtocolIfNeeded(inputString, output, start);
+
+                String urlTitle;
+                try {
+                    urlTitle = TitleExtractor.getPageTitle(output);
+                } catch (IOException e) {
+                    e.printStackTrace();
+
+                    urlTitle = null;
+                }
+
+                JSONObject linkObject = new JSONObject();
+                linkObject.put(JSON_OBJECT_URL, output);
+                linkObject.put(JSON_OBJECT_TITLE, urlTitle);
+
+                links.put(linkObject);
+
+            }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        return jsonObject;
+        return links;
+    }
+
+    @NonNull
+    private static String addUrlProtocolIfNeeded(String inputString, String output, int start) {
+        if (output.startsWith(WWW)) {
+            String urlProtocol = inputString.substring(0, start);
+
+            if (urlProtocol.endsWith(HTTP)) {
+                output = HTTP + output;
+            } else if (urlProtocol.endsWith(HTTPS)) {
+                output = HTTPS + output;
+            } else if (urlProtocol.endsWith(FTP)) {
+                output = FTP + output;
+            }
+        }
+        return output;
     }
 }
