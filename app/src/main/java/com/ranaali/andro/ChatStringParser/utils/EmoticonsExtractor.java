@@ -1,4 +1,4 @@
-package com.example.andro.ChatStringParser.utils;
+package com.ranaali.andro.ChatStringParser.utils;
 
 import org.json.JSONArray;
 

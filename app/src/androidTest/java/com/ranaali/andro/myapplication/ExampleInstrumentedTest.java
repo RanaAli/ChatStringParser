@@ -1,4 +1,4 @@
-package com.example.andro.myapplication;
+package com.ranaali.andro.myapplication;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

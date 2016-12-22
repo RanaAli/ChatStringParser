@@ -1,8 +1,8 @@
-package com.example.andro.ChatStringParser.mainscreen;
+package com.ranaali.andro.ChatStringParser.mainscreen;
 
 import android.os.AsyncTask;
 
-import com.example.andro.ChatStringParser.utils.ChatStringJSONCreator;
+import com.ranaali.andro.ChatStringParser.utils.ChatStringJSONCreator;
 
 import org.json.JSONObject;
 

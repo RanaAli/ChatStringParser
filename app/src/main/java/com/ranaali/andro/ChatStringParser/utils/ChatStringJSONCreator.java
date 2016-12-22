@@ -1,11 +1,11 @@
-package com.example.andro.ChatStringParser.utils;
+package com.ranaali.andro.ChatStringParser.utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import static com.example.andro.ChatStringParser.utils.EmoticonsExtractor.checkForEmoticons;
-import static com.example.andro.ChatStringParser.utils.MentionsExtractor.checkForMentions;
+import static com.ranaali.andro.ChatStringParser.utils.EmoticonsExtractor.checkForEmoticons;
+import static com.ranaali.andro.ChatStringParser.utils.MentionsExtractor.checkForMentions;
 
 
 /**

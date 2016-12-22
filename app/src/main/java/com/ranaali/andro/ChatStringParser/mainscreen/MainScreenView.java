@@ -1,11 +1,11 @@
-package com.example.andro.ChatStringParser.mainscreen;
+package com.ranaali.andro.ChatStringParser.mainscreen;
 
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.andro.myapplication.R;
+import com.ranaali.andro.myapplication.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

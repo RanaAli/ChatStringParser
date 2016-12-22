@@ -1,11 +1,11 @@
-package com.example.andro.myapplication.mainscreen;
+package com.ranaali.andro.myapplication.mainscreen;
 
 import junit.framework.Assert;
 
 import org.json.JSONArray;
 import org.junit.Test;
 
-import static com.example.andro.ChatStringParser.utils.MentionsExtractor.checkForMentions;
+import static com.ranaali.andro.ChatStringParser.utils.MentionsExtractor.checkForMentions;
 
 /**
  * Created by andro on 12/19/2016.

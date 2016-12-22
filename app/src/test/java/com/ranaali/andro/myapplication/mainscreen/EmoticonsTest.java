@@ -1,11 +1,11 @@
-package com.example.andro.myapplication.mainscreen;
+package com.ranaali.andro.myapplication.mainscreen;
 
 import junit.framework.Assert;
 
 import org.json.JSONArray;
 import org.junit.Test;
 
-import static com.example.andro.ChatStringParser.utils.EmoticonsExtractor.checkForEmoticons;
+import static com.ranaali.andro.ChatStringParser.utils.EmoticonsExtractor.checkForEmoticons;
 
 /**
  * Created by andro on 12/19/2016.
