@@ -64,7 +64,7 @@ public class MainScreenView {
     }
 
     void hideProgress(){
-        progressBarRelativeLayout.setVisibility(View.INVISIBLE);
+        progressBarRelativeLayout.setVisibility(View.GONE);
     }
 
     void setMainScreenViewInterface(IMainScreenView mainScreenViewInterface) {

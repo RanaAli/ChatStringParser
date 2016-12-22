@@ -28,6 +28,9 @@ public class MainScreenPresenter {
         @Override
         public void inputString(String inputString) {
             try {
+
+                mainScreenView.showProgress();
+
                 JSONObject jsonObject = new CreateJson().execute(inputString).get();
 
                 String displayText = inputString + NEW_LINE + NEW_LINE + jsonObject.toString();
@@ -35,6 +38,8 @@ public class MainScreenPresenter {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+            mainScreenView.hideProgress();
         }
 
     };
@@ -42,23 +47,10 @@ public class MainScreenPresenter {
     private class CreateJson extends AsyncTask<String, String, JSONObject> {
 
         @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            mainScreenView.showProgress();
-        }
-
-        @Override
         protected JSONObject doInBackground(String... params) {
             return ChatStringJSONCreator.ChatStringToJSON(params[0]);
         }
 
-        @Override
-        protected void onPostExecute(JSONObject jsonObject) {
-            super.onPostExecute(jsonObject);
-
-            mainScreenView.hideProgress();
-        }
     }
 
 }
