@@ -21,8 +21,8 @@ public class MainScreenPresenter {
 
     }
 
-    private MainScreenView.MainScreenViewInterface
-            mainScreenViewInterface = new MainScreenView.MainScreenViewInterface() {
+    private IMainScreenView
+            mainScreenViewInterface = new IMainScreenView() {
 
         @Override
         public void inputString(String inputString) {

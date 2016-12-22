@@ -27,7 +27,7 @@ public class MainScreenView {
     @BindView(R.id.mainScreenInputButton)
     protected Button inputButton;
 
-    private MainScreenViewInterface mainScreenViewInterface;
+    private IMainScreenView mainScreenViewInterface;
 
     MainScreenView(View view) {
         ButterKnife.bind(this, view);
@@ -59,11 +59,7 @@ public class MainScreenView {
         return inputEditText.getText().toString();
     }
 
-    public void setMainScreenViewInterface(MainScreenViewInterface mainScreenViewInterface) {
+    public void setMainScreenViewInterface(IMainScreenView mainScreenViewInterface) {
         this.mainScreenViewInterface = mainScreenViewInterface;
-    }
-
-    interface MainScreenViewInterface{
-        void inputString(String inputString);
     }
 }
