@@ -3,7 +3,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/activity_vertical">
+    android:padding="@dimen/component_internal_padding">
 
     <TextView
         android:id="@+id/mainScreenTitleTextView"
@@ -43,6 +43,6 @@
         android:layout_marginBottom="@dimen/activity_vertical"
         android:layout_marginTop="@dimen/activity_vertical"
         android:background="@android:color/darker_gray"
-        android:padding="@dimen/activity_vertical"
+        android:padding="@dimen/component_internal_padding"
         android:textColor="@android:color/black" />
 </RelativeLayout>
