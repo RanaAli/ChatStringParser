@@ -6,7 +6,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -48,10 +47,10 @@ public class LinkExtractor {
                 String urlTitle;
                 try {
                     urlTitle = TitleExtractor.getPageTitle(output);
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
 
-                    urlTitle = null;
+                    urlTitle = "";
                 }
 
                 JSONObject linkObject = new JSONObject();
