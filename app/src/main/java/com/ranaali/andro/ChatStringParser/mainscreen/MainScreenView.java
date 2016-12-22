@@ -1,14 +1,15 @@
 package com.ranaali.andro.ChatStringParser.mainscreen;
 
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ranaali.andro.myapplication.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by andro on 12/18/2016.
@@ -24,8 +25,8 @@ public class MainScreenView {
     @BindView(R.id.mainScreenInputEditText)
     protected EditText inputEditText;
 
-    @BindView(R.id.mainScreenInputButton)
-    protected Button inputButton;
+    @BindView(R.id.mainScreenProgressRelativeLayout)
+    protected RelativeLayout progressBarRelativeLayout;
 
     private IMainScreenView mainScreenViewInterface;
 
@@ -36,17 +37,16 @@ public class MainScreenView {
     }
 
     private void setupView() {
-        inputButton.setOnClickListener(inputButtonOnClickListener);
+        hideProgress();
     }
 
-    private View.OnClickListener inputButtonOnClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
+    @OnClick(R.id.mainScreenInputButton)
+    protected void onEnterButtonClick(View v) {
             if(mainScreenViewInterface != null){
                 mainScreenViewInterface.inputString(getInputText());
             }
         }
-    };
+
     void setOutputText(String outputText){
         outputTextView.setText(outputText);
     }
@@ -59,7 +59,15 @@ public class MainScreenView {
         return inputEditText.getText().toString();
     }
 
-    public void setMainScreenViewInterface(IMainScreenView mainScreenViewInterface) {
+    void showProgress(){
+        progressBarRelativeLayout.setVisibility(View.VISIBLE);
+    }
+
+    void hideProgress(){
+        progressBarRelativeLayout.setVisibility(View.INVISIBLE);
+    }
+
+    void setMainScreenViewInterface(IMainScreenView mainScreenViewInterface) {
         this.mainScreenViewInterface = mainScreenViewInterface;
     }
 }
