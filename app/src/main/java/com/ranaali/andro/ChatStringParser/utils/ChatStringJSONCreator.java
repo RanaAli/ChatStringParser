@@ -17,6 +17,21 @@ public class ChatStringJSONCreator {
     public static final String EMOTICONS_JSON_ARRAY_NAME = "emoticons";
     public static final String LINK_JSON_ARRAY_NAME = "links";
 
+    /**
+     * The function checks for any mentions, emoticons
+     * and links in the text and returns JSONObject in the following format
+     {
+     "mentions": ["bob"],
+     "emoticons": ["success"],
+     "links": [
+            { "url": "https://abc.xyz/",
+                "title": "abcxyz..." }
+        ]
+     }
+     *
+     * @param inputString text to be processed
+     * @return JSONObject with arrays of identified items
+     */
     public static JSONObject ChatStringToJSON(String inputString) {
         JSONObject jsonObject = new JSONObject();
 

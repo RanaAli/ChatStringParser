@@ -14,6 +14,14 @@ public class EmoticonsExtractor {
     private static final String REGEX_ALPHANUMERIC = "[a-zA-Z0-9]+";
     private static final String REPLACEMENT = ") (";
 
+    /**
+     * The function checks for any emoticons
+     * in the text and returns JSONArray.
+     *
+     * @param inputString text to be processed
+     * @return JSONArray with identified items
+     *
+     */
     public static JSONArray checkForEmoticons(String inputString) {
         JSONArray emoticons = new JSONArray();
 

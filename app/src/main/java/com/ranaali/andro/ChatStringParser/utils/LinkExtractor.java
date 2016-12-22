@@ -25,6 +25,14 @@ public class LinkExtractor {
     private static final String HTTPS = "https://";
     private static final String FTP = "ftp://";
 
+    /**
+     * The function checks for any links
+     * in the text and returns JSONArray.
+     *
+     * @param inputString text to be processed
+     * @return JSONArray with identified items
+     *
+     */
     public static JSONArray checkForLinks(String inputString) {
         JSONArray links = new JSONArray();
 
