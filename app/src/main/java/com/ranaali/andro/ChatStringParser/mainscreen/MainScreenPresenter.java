@@ -4,8 +4,6 @@ import android.os.AsyncTask;
 
 import com.ranaali.andro.ChatStringParser.utils.ChatStringJSONCreator;
 
-import org.json.JSONObject;
-
 import static com.ranaali.andro.ChatStringParser.Constants.Constants.NEW_LINE;
 
 /**
@@ -31,9 +29,9 @@ public class MainScreenPresenter {
 
                 mainScreenView.showProgress();
 
-                JSONObject jsonObject = new CreateJson().execute(inputString).get();
+                String jsonString = new CreateJsonString().execute(inputString).get();
 
-                String displayText = inputString + NEW_LINE + NEW_LINE + jsonObject.toString();
+                String displayText = inputString + NEW_LINE + NEW_LINE + jsonString;
                 mainScreenView.setOutputText(displayText);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -44,11 +42,11 @@ public class MainScreenPresenter {
 
     };
 
-    private class CreateJson extends AsyncTask<String, String, JSONObject> {
+    private class CreateJsonString extends AsyncTask<String, String, String> {
 
         @Override
-        protected JSONObject doInBackground(String... params) {
-            return ChatStringJSONCreator.ChatStringToJSON(params[0]);
+        protected String doInBackground(String... params) {
+            return ChatStringJSONCreator.ChatStringToJSON(params[0]).toString();
         }
 
     }
