@@ -1,6 +1,6 @@
-package com.example.andro.myapplication.mainscreen;
+package com.ranaali.andro.myapplication.mainscreen;
 
-import com.example.andro.ChatStringParser.utils.ChatStringJSONCreator;
+import com.ranaali.andro.ChatStringParser.utils.ChatStringJSONCreator;
 
 import junit.framework.Assert;
 

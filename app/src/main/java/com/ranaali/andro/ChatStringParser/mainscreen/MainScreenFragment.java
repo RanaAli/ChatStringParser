@@ -1,4 +1,4 @@
-package com.example.andro.ChatStringParser.mainscreen;
+package com.ranaali.andro.ChatStringParser.mainscreen;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.andro.myapplication.R;
+import com.ranaali.andro.myapplication.R;
 
 /**
  * Created by andro on 12/18/2016.

@@ -1,4 +1,4 @@
-package com.example.andro.ChatStringParser.utils;
+package com.ranaali.andro.ChatStringParser.utils;
 
 import org.json.JSONArray;
 
@@ -13,6 +13,14 @@ public class MentionsExtractor {
     private static final String MENTIONS_CHAR = "@";
     private static final String STRING_SPACE = " ";
 
+    /**
+     * The function checks for any mentions
+     * in the text and returns JSONArray
+     *
+     * @param inputString text to be processed
+     * @return JSONArray with identified items
+     *
+     */
     public static JSONArray checkForMentions(String inputString) {
 
         JSONArray mentions = new JSONArray();

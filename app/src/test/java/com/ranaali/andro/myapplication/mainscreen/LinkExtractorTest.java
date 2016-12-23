@@ -1,4 +1,4 @@
-package com.example.andro.myapplication.mainscreen;
+package com.ranaali.andro.myapplication.mainscreen;
 
 import junit.framework.Assert;
 
@@ -6,8 +6,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Test;
 
-import static com.example.andro.ChatStringParser.utils.LinkExtractor.JSON_OBJECT_URL;
-import static com.example.andro.ChatStringParser.utils.LinkExtractor.checkForLinks;
+import static com.ranaali.andro.ChatStringParser.utils.LinkExtractor.JSON_OBJECT_URL;
+import static com.ranaali.andro.ChatStringParser.utils.LinkExtractor.checkForLinks;
 
 /**
  * Created by andro on 12/20/2016.

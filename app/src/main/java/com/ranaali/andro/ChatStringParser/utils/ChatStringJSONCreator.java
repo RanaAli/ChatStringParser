@@ -1,11 +1,11 @@
-package com.example.andro.ChatStringParser.utils;
+package com.ranaali.andro.ChatStringParser.utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import static com.example.andro.ChatStringParser.utils.EmoticonsExtractor.checkForEmoticons;
-import static com.example.andro.ChatStringParser.utils.MentionsExtractor.checkForMentions;
+import static com.ranaali.andro.ChatStringParser.utils.EmoticonsExtractor.checkForEmoticons;
+import static com.ranaali.andro.ChatStringParser.utils.MentionsExtractor.checkForMentions;
 
 
 /**
@@ -17,6 +17,21 @@ public class ChatStringJSONCreator {
     public static final String EMOTICONS_JSON_ARRAY_NAME = "emoticons";
     public static final String LINK_JSON_ARRAY_NAME = "links";
 
+    /**
+     * The function checks for any mentions, emoticons
+     * and links in the text and returns JSONObject in the following format
+     {
+     "mentions": ["bob"],
+     "emoticons": ["success"],
+     "links": [
+            { "url": "https://abc.xyz/",
+                "title": "abcxyz..." }
+        ]
+     }
+     *
+     * @param inputString text to be processed
+     * @return JSONObject with arrays of identified items
+     */
     public static JSONObject ChatStringToJSON(String inputString) {
         JSONObject jsonObject = new JSONObject();
 

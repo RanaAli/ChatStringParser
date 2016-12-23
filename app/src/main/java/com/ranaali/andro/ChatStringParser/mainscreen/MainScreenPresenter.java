@@ -1,10 +1,12 @@
-package com.example.andro.ChatStringParser.mainscreen;
+package com.ranaali.andro.ChatStringParser.mainscreen;
 
 import android.os.AsyncTask;
 
-import com.example.andro.ChatStringParser.utils.ChatStringJSONCreator;
+import com.ranaali.andro.ChatStringParser.utils.ChatStringJSONCreator;
 
 import org.json.JSONObject;
+
+import static com.ranaali.andro.ChatStringParser.Constants.Constants.NEW_LINE;
 
 /**
  * Created by andro on 12/18/2016.
@@ -12,7 +14,6 @@ import org.json.JSONObject;
 
 public class MainScreenPresenter {
 
-    private static final String NEW_LINE = "\n";
     private MainScreenView mainScreenView;
 
     MainScreenPresenter(MainScreenView mainScreenView) {
@@ -21,13 +22,15 @@ public class MainScreenPresenter {
 
     }
 
-    private MainScreenView.MainScreenViewInterface
-            mainScreenViewInterface = new MainScreenView.MainScreenViewInterface() {
+    private IMainScreenView
+            mainScreenViewInterface = new IMainScreenView() {
 
         @Override
         public void inputString(String inputString) {
-
             try {
+
+                mainScreenView.showProgress();
+
                 JSONObject jsonObject = new CreateJson().execute(inputString).get();
 
                 String displayText = inputString + NEW_LINE + NEW_LINE + jsonObject.toString();
@@ -35,6 +38,8 @@ public class MainScreenPresenter {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+            mainScreenView.hideProgress();
         }
 
     };
@@ -45,6 +50,7 @@ public class MainScreenPresenter {
         protected JSONObject doInBackground(String... params) {
             return ChatStringJSONCreator.ChatStringToJSON(params[0]);
         }
+
     }
 
 }
